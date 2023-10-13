@@ -14,3 +14,7 @@ input.larger {
     height: 1.25rem;
     margin-right: .5rem;
 }
+
+.shadow-custom {
+    box-shadow: 0 0 10px rgba(136, 136, 136, 0.5);
+}
