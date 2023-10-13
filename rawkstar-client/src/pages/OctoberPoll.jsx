@@ -6,14 +6,7 @@ import Cat from "../images/Catclick.png"
 const OctoberPoll = () => {
     const [looked, setlooked] = useState(null)
     const [submitted, setSubmitted] = useState(false)
-
-
     const [formData, setFormData] = useState([])
-
-    function handleNotLooked () {
-        setlooked(false)
-        window.open("https://www.nw-naturals.net/", "_blank")
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,7 +22,14 @@ const OctoberPoll = () => {
     }
 
     const handleButtons = (value) => {
-        const test = {
+        if (value === "YES!") {
+            setlooked(true)
+        } else {
+          setlooked(false)
+          window.open("https://www.nw-naturals.net/", "_blank")
+        }
+
+        const option = {
           options: [value]
         }
 
@@ -38,20 +38,20 @@ const OctoberPoll = () => {
           headers: {
               "Content-Type": "application/json"
           },
-          body: JSON.stringify(test)
-      })
+          body: JSON.stringify(option)
+        })
         setSubmitted(true)
     }
 
     return (
-        <div className='flex flex-col items-center justify-center px-[2rem]'>
-      <div className="flex lg:flex-row flex-col justify-center items-center lg:gap-[10rem]">
-        <a href="https://www.nw-naturals.net/" target="_blank"><img src={Logo} alt="of Rawkstar logo" className='h-[20rem] ' /></a>
-        <div className='flex flex-col text-center'>
-          <h1 className='text-[4rem]'>YOUR OPINION MATTERS TO US!</h1>
-          <p className='text-[2rem]'>Vote so we understand what <span className='font-bold text-[3rem]'>YOU</span> want.</p>
-          
-        </div>
+      <div className='flex flex-col items-center justify-center px-[2rem]'>
+        <div className="flex lg:flex-row flex-col justify-center items-center lg:gap-[10rem]">
+          <a href="https://www.nw-naturals.net/" target="_blank"><img src={Logo} alt="of Rawkstar logo" className='md:h-[20rem] h-[80vw]' /></a>
+          <div className='flex flex-col text-center'>
+            <h1 className='md:text-[4rem] text-[2rem]'>YOUR OPINION MATTERS TO US!</h1>
+            <p className='md:text-[2rem] text-[1rem]'>Vote so we understand what <span className='font-bold md:text-[3rem] text-[1.5rem]'>YOU</span> want.</p>
+            
+          </div>
       </div>
 
       <div className='flex items-center justify-center'>
@@ -59,22 +59,23 @@ const OctoberPoll = () => {
       </div>
 
       <div className='flex flex-col gap-[2rem] my-[2rem]'>
-        <div className='flex justify-center items-center gap-[.5rem]'>
-          <img src={October} alt="" className='h-[5rem]'/>
-          <h1 className='text-[3rem]'>POLLS</h1>
+        <div className='flex justify-center items-end gap-[.5rem]'>
+          <img src={October} alt="" className='md:h-[5rem] h-[2.5rem]'/>
+          <h1 className='md:text-[3rem] text-[1rem]'>POLLS</h1>
         </div>
 
         <div className={`flex justify-center items-center ${looked != null && "hidden"}`}>
           <div className='shadow-lg'>
-            <div className='flex items-center justify-center py-[1rem] w-[40rem] bg-[#D55E00] border-t-[1px] border-l-[1px] border-r-[1px] rounded-t-lg border-black'>
-              <h1 className='text-[2rem]'>HAVE YOU SEEN OUR NEW WEBSITE?</h1>
+            <div className='flex items-center justify-center py-[1rem] md:w-[40rem] w-[80vw] bg-[#D55E00] border-t-[1px] border-l-[1px] border-r-[1px] rounded-t-lg border-black'>
+              <h1 className='md:text-[2rem] text-center'>HAVE YOU SEEN OUR NEW WEBSITE?</h1>
             </div>
-            <div className='flex flex-col justify-center items-center border-[1px] border-black gap-[2rem] py-[2rem] px-[2rem] rounded-b-lg'>
-              <button value="YES!"  onClick={ () => handleButtons("YES!") } className='w-[100%] px-[2rem] bg-[#D3D3D3] text-[2rem] rounded-lg hover:scale-[102%] duration-300'>YES!</button>
-              <button value="NO, LOOKING NOW!" onClick={ () => handleButtons("NO, LOOKING NOW!") } className='w-[100%] bg-[#D3D3D3] text-[2rem] rounded-lg hover:scale-[102%] duration-300'>NO, LOOKING NOW!</button>
+            <div className='flex flex-col justify-center items-center border-[1px] border-black md:gap-[2rem] gap-[1rem] py-[2rem] px-[2rem] rounded-b-lg'>
+              <button value="YES!"  onClick={ () => handleButtons("YES!") } className='w-[100%] px-[2rem] bg-[#D3D3D3] md:text-[2rem] rounded-lg hover:scale-[102%] duration-300'>YES!</button>
+              <button value="NO, LOOKING NOW!" onClick={ () => handleButtons("NO, LOOKING NOW!") } className='w-[100%] bg-[#D3D3D3] md:text-[2rem] rounded-lg hover:scale-[102%] duration-300'>NO, LOOKING NOW!</button>
             </div>
           </div>  
         </div>
+
           {
               looked != null && <form  className={`text-[1.5rem] my-[2rem] ${submitted ? "hidden": null}`}>
                 <header className='text-center text-[2rem]'>SELECT ALL THAT APPLY</header>  
@@ -97,7 +98,7 @@ const OctoberPoll = () => {
           } 
       </div>
       {submitted && <h1 className='text-[2rem]'>Thank You for your Response!</h1>}
-      <a href="https://www.nw-naturals.net/" target="_blank"><img src={Cat} alt="" className='h-[10rem] w-auto my-[2rem]' /></a>
+      <a href="https://www.nw-naturals.net/" target="_blank"><img src={Cat} alt="" className='md:h-[10rem] h-[5rem] w-auto my-[2rem]' /></a>
     </div>
     ) 
 }

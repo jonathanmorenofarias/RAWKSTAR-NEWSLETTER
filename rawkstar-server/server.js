@@ -3,7 +3,7 @@ const app = express();
 const database = require('./database');
 const Poll = require('./models/Poll');
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 
